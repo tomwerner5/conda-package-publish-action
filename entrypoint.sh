@@ -23,10 +23,14 @@ check_if_meta_yaml_file_exists() {
     fi
 }
 
-upload_package(){
-    conda config --set anaconda_upload yes
+upload_and_build_package(){
     anaconda login --username $INPUT_ANACONDAUSERNAME --password $INPUT_ANACONDAPASSWORD
-    conda build .
+    conda build -c defaults -c tsdst --output-folder . .
+    conda convert -p osx-64 linux-64/*.tar.bz2
+    conda convert -p win-64 linux-64/*.tar.bz2
+    anaconda upload --label main linux-64/*.tar.bz2
+    anaconda upload --label main win-64/*.tar.bz2
+    anaconda upload --label main osx-64/*.tar.bz2
     anaconda logout
 }
 
