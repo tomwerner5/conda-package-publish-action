@@ -25,7 +25,7 @@ check_if_meta_yaml_file_exists() {
 
 upload_and_build_package(){
     anaconda login --username $INPUT_ANACONDAUSERNAME --password $INPUT_ANACONDAPASSWORD
-    conda build -c defaults -c conda-forge .
+    conda build -c defaults -c conda-forge --output-folder . .
     conda convert -p osx-64 linux-64/*.tar.bz2
     conda convert -p win-64 linux-64/*.tar.bz2
     anaconda upload --label main linux-64/*.tar.bz2
