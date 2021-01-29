@@ -19,3 +19,22 @@ jobs:
         AnacondaUsername: ${{ secrets.ANACONDA_PASSWORD }}
         AnacondaPassword: ${{ secrets.ANACONDA_USERNAME }}
 ```
+
+### Example project structure
+
+```
+.
+├── LICENSE
+├── README.md
+├── setup.py
+├── myproject
+│   ├── __init__.py
+│   └── myproject.py
+├── conda
+│   ├── conda_build_config.yaml
+│   └── meta.yaml
+├── .github
+│   └── workflows
+│       └── publish_conda.yml
+├── .gitignore
+```
